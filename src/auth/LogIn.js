@@ -14,7 +14,7 @@ const HomePage = () => {
     
   // });
   
- 
+  
   const [err, setErr] = useState("");
   const [userName, setUserName] = useState("");
   const [userPassword, setUserPassword] = useState("");
@@ -61,7 +61,6 @@ const HomePage = () => {
       console.log(true);
      
       navigate("/foodOrder");
-      window.location.reload()
     } else {
       console.log(false);
       setErr("*please enter valid name and password");

@@ -3,8 +3,6 @@ import LogIn from '../auth/LogIn'
 import Admin from '../auth/Admin'
 
 const AuthRouter = () => {
-
-  console.log('ima called')
   return (
     <BrowserRouter>
       <Routes>

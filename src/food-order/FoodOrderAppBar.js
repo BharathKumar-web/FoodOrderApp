@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState ,useEffect} from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import useStyles from "./FoodOrderStyles";
@@ -7,22 +7,22 @@ import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutl
 import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
 import Drawer from "@material-ui/core/Drawer";
 import Menu from "@mui/material/Menu";
-import { styled, alpha } from "@material-ui/core/styles";
+import { styled,alpha } from "@material-ui/core/styles";
 import MenuItem from "@mui/material/MenuItem";
 import MenuIcon from "@mui/icons-material/Menu";
-import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import LogIn from "../auth/LogIn";
-import CircularProgress from "@mui/material/CircularProgress";
-import Admin from "../auth/Admin";
+import PropTypes from 'prop-types';
+import Box from '@mui/material/Box'
+import LogIn from '../auth/LogIn'
+import CircularProgress from '@mui/material/CircularProgress';
 
 import {
   ButtonGroup,
   Button,
   Modal,
+  
   Container,
   Grid,
   Card,
@@ -33,7 +33,7 @@ import {
 // useEffect(() => {
 //   console.log();
 //   if (!localStorage.getItem("AppBar")) navigate('/foodOrder') ;
-
+  
 // });
 
 const style = {
@@ -48,21 +48,83 @@ const style = {
   p: 4,
 };
 
+const menu = styled(Box)(({ theme }) => ({
+  display: "",
+  alignItem: "center",
+  gap: "10px",
+  [theme.breakpoints.up("sm")]: {
+    display: "none",
+  },
+}));
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  '&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginLeft: 0,
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
+const Icons=styled(Box)(({theme})=>(
+  {
+  
+  
+  display:'flex',
+
+  [theme.breakpoints.up('sm')]:
+  {
+     display:'none'
+  }
+  }))
+  
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: 'inherit',
+  '& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
+      },
+    },
+  },
+}));
+
 
 const FoodOrderAppBar = ({
   children,
   FoodDetail,
   cartLength,
-  abc
+  placeOrderDetails,
 }) => {
+
   // useEffect(() => {
   //   console.log();
   //   if (localStorage.setItem("AppBar")) ;
-
+    
   // });
-  console.log(abc)
-  const navigate = useNavigate();
-
+   const navigate = useNavigate();
+  
   const [cartModal, setCartModal] = useState(false);
   const cartModalHandle = () => setCartModal(true);
   const [placeOrderModal, setPlaceOrderModal] = useState(false);
@@ -82,9 +144,8 @@ const FoodOrderAppBar = ({
   const [avatarOpen, setAvatarOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [closeModal, setCloseModal] = useState(false);
-
-  localStorage.setItem("AppBar", true);
+ 
+  localStorage.setItem("AppBar",true);
   console.log(cartLength, "l");
   const cartMOdalHandle = () => {
     setDetail(FoodDetail);
@@ -96,8 +157,12 @@ const FoodOrderAppBar = ({
     // localStorage.removeItem("userButton2");
     // localStorage.removeItem("AdminButton");
     // localStorage.removeItem("books");
-    // getAuthA()
+    
+   
+   navigate('/')
+   
   };
+  
 
   console.log();
   const CartModalCancel = () => {
@@ -177,66 +242,33 @@ const FoodOrderAppBar = ({
   const placeOrderBtn = () => {
     setPlaceOrderModal(true);
   };
-  const Details = () => {
-    navigate("/admin");
-  };
+const Details=()=>
+{
+  navigate("/admin");
+}
   return (
     <div>
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        anchor="top"
-        classes={{ paper: classes.drawerPaper }}>
-        <AppBar>
-          <Toolbar className={classes.appBar}>
-            <Typography>FoodCorner </Typography>
-            <MenuIcon
-              className={classes.menu}
-              sx={{ display: { xs: "block", sm: "none", md: "none" } }}
-              onClick={MenuOpen}>
-              {" "}
-            </MenuIcon>
-            <Menu
-              id="demo-positioned-menu"
-              area-labelledby="demo-positioned-button"
-              open={menuOpen}
-              onClose={() => setMenuOpen(false)}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              anchorEl={anchorEl}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}>
-              <MenuItem onClick={cartMOdalHandle}>CART</MenuItem>
-
-              <MenuItem onClick={placeOrderBtn}>ORDERS</MenuItem>
-              <MenuItem onClick={Details}>DETAILS</MenuItem>
-
-              <MenuItem onClick={logOut}>LOG OUT</MenuItem>
-            </Menu>
-
-            <Box
-              sx={{ display: { xs: "none", sm: "block", md: "block" } }}
-              className={classes.ButtonGroup}>
-              <ButtonGroup>
-                <Modal></Modal>
-                <Button onClick={cartMOdalHandle}>
-                  <AddShoppingCartOutlinedIcon />
-                  cart{cartLength}
-                </Button>
-                <Button onClick={placeOrderBtn}>
-                  <CircleNotificationsIcon />
-                  orders
-                </Button>
-                <Avatar onClick={AvatarOpen}>G</Avatar>
+  
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          anchor="top"
+          classes={{ paper: classes.drawerPaper }} >
+            
+          <AppBar>
+            <Toolbar  className={classes.appBar}>
+            <Typography> FoodCorner </Typography>
+             <MenuIcon
+                  className={classes.menu}
+                  sx={{ display: { xs: "block", sm: "none", md: "none" } }}
+                  onClick={MenuOpen}>
+                  {" "}
+                </MenuIcon>
                 <Menu
                   id="demo-positioned-menu"
                   area-labelledby="demo-positioned-button"
-                  open={avatarOpen}
-                  onClose={() => setAvatarOpen(false)}
+                  open={menuOpen}
+                  onClose={() => setMenuOpen(false)}
                   anchorOrigin={{
                     vertical: "top",
                     horizontal: "right",
@@ -246,14 +278,55 @@ const FoodOrderAppBar = ({
                     vertical: "top",
                     horizontal: "right",
                   }}>
-                  <MenuItem onClick={Details}>DETAILS</MenuItem>
-                  <MenuItem onClick={logOut}>LOGOUT</MenuItem>
+                  <MenuItem onClick={cartMOdalHandle}>CART</MenuItem>
+                  <MenuItem onClick={placeOrderBtn}>ORDERS</MenuItem>
+                  <MenuItem>DETAILS</MenuItem>
+                  
+                  <MenuItem onClick={logOut}>LOG OUT</MenuItem>
                 </Menu>
-              </ButtonGroup>
-            </Box>
-
-            {/* <LogIn drawer={<Drawer/>? {display:'none'} :' '}/> */}
-
+           
+                 <Box sx={{ display: { xs: "none", sm: "block", md: "block" } }} className={classes.ButtonGroup}>
+                 <ButtonGroup    >
+                    <Button   onClick={cartMOdalHandle}
+                     >
+                      <AddShoppingCartOutlinedIcon  />
+                      cart{cartLength}
+                    </Button>
+                    <Button   onClick={placeOrderBtn}>
+                      <CircleNotificationsIcon />
+                      orders
+                    </Button>
+                    <Avatar onClick={AvatarOpen}>G</Avatar>
+                  <Menu  
+                    id="demo-positioned-menu"
+                    area-labelledby="demo-positioned-button"
+                    open={avatarOpen}
+                    onClose={() => setAvatarOpen(false)}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                     
+                    }}
+                    anchorEl={anchorEl}
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}>
+                     
+                    <MenuItem  onClick={Details}>DETAILS</MenuItem>
+                    <MenuItem  onClick={logOut}>LOGOUT</MenuItem>
+                    
+                  </Menu>
+                  </ButtonGroup >
+                
+                 </Box>
+                  
+                  
+                
+                  
+                {/* <LogIn drawer={<Drawer/>? {display:'none'} :' '}/> */}
+                
+         
             {/* <MenuIcon
                   className={classes.menu}
                   sx={{ display: { xs: "block", sm: "none", md: "none" } }}
@@ -321,17 +394,20 @@ const FoodOrderAppBar = ({
 
               </Toolbar>
               */}
-          </Toolbar>
-        </AppBar>
-        <Modal open={cartModal} onClose={cartModalHandle}>
+            </Toolbar>
+            
+          </AppBar>
+          <Modal open={cartModal} onClose={cartModalHandle}>
           <Box sx={style}>
             <Container className={classes.cardGrid2} maxWidth="md">
               <Card>
                 {detail.map((food) => {
                   return (
-                    <Container className={classes.cardGrid2} maxWidth="md">
-                      <Grid container spacing={3}>
+                
+                         <Container className={classes.cardGrid2} maxWidth="md">
+                         <Grid container spacing={3}>
                         <Grid item xs={12} sm={10} md={8}>
+                         
                           <Typography>{food.cartfoodName}</Typography>
                           <Typography>{food.cartfoodPrice}</Typography>
 
@@ -354,18 +430,18 @@ const FoodOrderAppBar = ({
                           </ButtonGroup>
                         </Grid>
                       </Grid>
-                    </Container>
+                         </Container>
+                     
+                   
                   );
                 })}
                 <Typography>total{cartFodss}</Typography>
-                <Box className={classes.carts}>
-                  <Button variant="outlined" onClick={PlaceOrder}>
-                    Place Order
-                  </Button>
-                  <Button variant="outlined" onClick={CartModalCancel}>
-                    Cancel
-                  </Button>
-                </Box>
+             <Box className={classes.carts}>
+             <Button variant='outlined' onClick={PlaceOrder}>Place Order</Button>
+                  <Button variant='outlined' onClick={CartModalCancel}>Cancel</Button>
+             </Box>
+                  
+         
               </Card>
             </Container>
           </Box>
@@ -388,7 +464,7 @@ const FoodOrderAppBar = ({
                 })}
                 <Typography>total{cartFodss}</Typography>
                 <ButtonGroup>
-                  <Button onClick={placeOrderCancel}>OK</Button>
+                  <Button  onClick={placeOrderCancel}>OK</Button>
                 </ButtonGroup>
               </Card>
             </Container>
@@ -403,17 +479,17 @@ const FoodOrderAppBar = ({
                 </Box>
 
                 <ButtonGroup>
-                  <Button className={classes.ok} onClick={placeOrderCancel}>
-                    OK
-                  </Button>
+                  <Button className={classes.ok} onClick={placeOrderCancel}>OK</Button>
                 </ButtonGroup>
               </Card>
             </Container>
           </Box>
         </Modal>
-      </Drawer>
+        </Drawer>
 
-      <div>{children}</div>
+       
+        <div>{children}</div>
+    
     </div>
   );
 };

@@ -2,23 +2,11 @@ import {BrowserRouter,Route,Routes} from 'react-router-dom'
 import FoodOrderAppBar from '../food-order/FoodOrderAppBar'
 import FoodOrder from '../food-order/FoodOrder'
 import Admin from '../auth/Admin'
-
-
-
-const AppRouter=({abc})=>
-
-
+const AppRouter=()=>
 {
-
-  // const getAuthD = () => {
-  //   getAuth()
-  // }
-
-
-
     return(
         <BrowserRouter>
-        <FoodOrderAppBar abc ={abc} />
+        {!localStorage.getItem('userButton')? <FoodOrderAppBar>
         
         <Routes>
         <Route path="/foodOrder"element={<FoodOrder/>}/>
@@ -26,7 +14,7 @@ const AppRouter=({abc})=>
       {<Route path='/foodOrder' element ={<FoodOrder />}></Route> }
       
         </Routes>
-       
+        </FoodOrderAppBar>:''}
        
         </BrowserRouter>
     )
