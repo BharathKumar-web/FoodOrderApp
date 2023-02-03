@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import React,{useEffect,useState} from 'react'
+ import AppRouter from "./Routes/AppRouter";
+ import AuthRouter from "./Routes/AuthRouter";
 
-export default App;
+
+ const App = () => {
+const[open,setOpen]=useState(false)
+// useEffect(() => {
+//  getAuth()
+// }, [])
+
+// const getAuth = () =>{
+
+//   console.log('vool')
+//   setOpen(!open)
+// }
+
+const abc = {abv : 'hao'}
+
+
+   return (
+     <>
+       {open &&  <AppRouter abc = {abc}/>} 
+       {!open &&  <AuthRouter/>}
+
+     </>
+
+
+   )
+ }
+ export default App;

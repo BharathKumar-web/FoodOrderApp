@@ -1,0 +1,100 @@
+
+table,
+th,
+tr,
+td {
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+
+.table1 {
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  margin-top: 3%;
+}
+td {
+  text-align: center;
+}
+body {
+  width: 100%;
+  background-color:beige;
+  color: white;
+}
+h3 {
+  text-align: center;
+}
+.back {
+}
+.addbtn {
+  color: white;
+  padding: 0.8%;
+  margin-left: 90%;
+  background-color: indigo;
+  cursor: pointer;
+  border: none;
+  margin-top: 2%;
+}
+.addbtn:hover {
+  background-color: blueviolet;
+}
+
+.inputdetails {
+  width: 70%;
+  margin-left: 15%;
+  border: 1px solid blanchedalmond;
+  padding-top: 1%;
+  box-shadow: 10px 10px 5px;
+  z-index: 100;
+  position: fixed;
+  transition-delay: 2s;
+  background-color: burlywood;
+}
+label {
+  margin-left: 5%;
+  padding-top: 10%;
+}
+input {
+  width: 70%;
+}
+.userAddBtn {
+  width: 20%;
+  border: none;
+  background-color: rgb(23, 189, 89);
+  color: white;
+  padding: 1.5%;
+  cursor: pointer;
+  margin-left: 35%;
+  margin-bottom: 3%;
+  margin-top: 2%;
+}
+img {
+  width: 30px;
+}
+.errMsg {
+  color: red;
+  margin-left: 25%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.logout {
+  background-color: rgb(13, 224, 189);
+  color: white;
+  border: none;
+  margin-left: 90%;
+  padding: 0.8%;
+  margin-top: 1%;
+  cursor: pointer;
+}
+.logout:hover {
+  background-color: rgba(13, 224, 189, 0.6);
+}
+.noEmp {
+  color: red;
+  margin-left: 40%;
+  font-size: larger;
+}
+.btnDiv
+{
+margin-top: 6%;
+}
